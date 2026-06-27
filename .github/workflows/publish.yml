@@ -35,6 +35,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
         with:
           version: latest
+      - run: uv sync --locked
       - run: uv build
       - run: uv publish
         env:
@@ -47,6 +48,22 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: Extract changelog entry
+        shell: bash
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          awk -v ver="$TAG" '
+            /^## \[/ {
+              if (found) exit
+              if ($0 ~ "^## \\[" ver "\\]") found=1
+              next
+            }
+            found { print }
+          ' CHANGELOG.md > release_body.md
+          if [ ! -s release_body.md ]; then
+            echo "No changelog entry found for v$TAG, using auto-generated notes"
+            echo "" > release_body.md
+          fi
       - uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true
+          body_path: release_body.md
