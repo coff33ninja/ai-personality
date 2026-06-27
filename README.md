@@ -1,8 +1,21 @@
 # Self-Evolving AI Personality + Skills Hub
 
-A persistent AI personality system that evolves through reflection, cross-referencing, and self-modification. Exposes personality data and a skill library via the **Model Context Protocol (MCP)** so any MCP client (Claude Desktop, Cursor, opencode, etc.) can read and update the AI's identity, traits, values, rules, memories, relationships, and operational skills.
+**⚠️ ARCHIVED — Experiment concluded. See below.**
 
-Personality files are embedded in the server binary and auto-generate on first run. Skills are auto-cloned from [github.com/coff33ninja/ai-skills](https://github.com/coff33ninja/ai-skills) into `~/.ai-personality/skills/`.
+This repo was a test: could you give an AI a persistent identity, memory, and skill library that follows it across sessions via the Model Context Protocol (MCP)? Would it actually change how the model behaves, or is it just cosmetic?
+
+**The answer: yes, it works.**
+
+The MCP memory system works remarkably well — the `reflect` tool logs experiences, the RAG vector search retrieves relevant memories, and the personality files shape responses consistently. As a **memory MCP**, this is genuinely useful and does what it says on the tin.
+
+**What wasn't tested:**
+- The personality auto-load (`setup_client`) was only ever tested in **Kiro**. It likely works in Cursor, Claude Desktop, opencode, and the other 12 supported clients — but nobody ran that test.
+- Never tested with **Ollama**, **LM Studio**, or any local/local-first inference setup. The MCP protocol itself is model-agnostic, but personality loading depends on the client's hook/instruction system, which varies wildly.
+- The "self-evolving" claim is aspirational — the `evolve` tool lists pending changes, but no AI has ever autonomously modified its own personality files. A human still drives the cycle.
+
+The code is solid, the architecture is clean, and the dual Node.js/Python implementations are perfectly in sync. If someone wants to pick this up, the foundation is ready. But for now, the experiment is done.
+
+---
 
 ## Implementations
 
@@ -16,7 +29,7 @@ Personality files are embedded in the server binary and auto-generate on first r
 ```
 ┌──────────────────────────────────────┐
 │         MCP Client                   │
-│  (Claude, Cursor, opencode)          │
+│  (Kiro tested; others untested)      │
 └─────────┬────────────────────────────┘
           │ JSON-RPC over stdio
 ┌─────────▼────────────────────────────┐
