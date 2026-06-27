@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-personality-server"
+version = "1.0.0"
+description = "MCP server for self-evolving AI personality and memory"
+requires-python = ">=3.10"
+dependencies = [
+    "fastembed>=0.3.0",
+    "mcp>=1.28.0",
+    "pyyaml>=6.0",
+    "toml>=0.10.2",
+]
+
+[project.scripts]
+ai-personality-server = "ai_personality.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_personality"]

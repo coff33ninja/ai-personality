@@ -27,4 +27,5 @@ Memories are logged during reflection. Each entry records a significant experien
 
 ## Active Memories
 
-*(No memories yet. This file grows as the AI reflects on interactions.)*
+<!-- entries -->
+<!-- Entries are managed by the MCP server. Edit manually or use the reflect tool. -->

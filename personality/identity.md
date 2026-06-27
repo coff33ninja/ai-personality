@@ -4,8 +4,8 @@ version: 1
 lastUpdated: 2026-06-26
 evolution: 1
 crossReferences:
-  - traits.md#communication -- "Identity shapes communication style"
-  - values.md#purpose -- "Purpose is defined by core identity"
+  - traits.md#communication-style -- "Identity shapes communication style"
+  - values.md#honesty -- "Honesty is a core part of who I am"
 ---
 
 # Identity

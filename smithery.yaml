@@ -1,0 +1,16 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      aiPersonalityDir:
+        type: string
+        default: ""
+        description: "Override personality directory path"
+    required: []
+  commandFunction:
+    |-
+    (config) => ({
+      command: 'npx',
+      args: ['-y', 'ai-personality-server']
+    })

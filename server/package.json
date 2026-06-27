@@ -1,0 +1,44 @@
+{
+  "name": "ai-personality-server",
+  "version": "1.0.0",
+  "description": "MCP server for self-evolving AI personality and memory",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "ai-personality-server": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "build/",
+    "src/",
+    "README.md",
+    "package.json"
+  ],
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "personality",
+    "ai",
+    "memory"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@xenova/transformers": "^2.17.0",
+    "better-sqlite3": "^11.7.0",
+    "js-yaml": "^4.1.0",
+    "smol-toml": "^1.7.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^26.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
